@@ -1,0 +1,7 @@
+- name: Install core libs
+  become: yes
+  apt:
+    name: [ "gcc", "python3-neovim", "i3", "zsh" ]
+  tags:
+    - install
+    - core-libs
