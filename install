@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+## Install ansible and other core utilities
+sudo apt update
+sudo apt install -y curl git software-properties-common ansible
+

@@ -1,0 +1,12 @@
+- hosts: localhost
+  pre_tasks:
+  - name: update apt
+    become: yes
+    apt:
+      force_apt_get: yes
+      update_cache: yes
+      upgrade: yes
+      state: present
+  tasks:
+    - include: tasks/tools.yml
+    - include: tasks/git.yml
