@@ -8,5 +8,6 @@
       upgrade: yes
       state: present
   tasks:
+    - include: tasks/core-libs.yml
     - include: tasks/tools.yml
     - include: tasks/git.yml
