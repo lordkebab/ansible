@@ -1,7 +1,7 @@
-- name: Install packages
+- name: Install tools
   become: yes
   apt:
-    name: [ "tmux", "ripgrep" ]
+    name: [ "curl", "stow", "git", "tmux", "ripgrep" ]
   tags:
     - install
-    - productivity
+    - tools
