@@ -1,0 +1,7 @@
+- name: Install packages
+  become: yes
+  apt:
+    name: [ "tmux", "ripgrep" ]
+  tags:
+    - install
+    - productivity
