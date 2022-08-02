@@ -1,0 +1,22 @@
+- name: Setup zsh
+  become: yes
+  apt: name=zsh
+  tags: &tags_for_zsh [ 'install', 'tools', 'dotfiles', 'zsh' ]
+
+- name: Change default shell to zsh
+  become: yes
+  shell: chsh -s $(which zsh)
+  tags: *tags_for_zsh
+
+- name: Only setup oh-my-zsh if it isn't setup already
+  become_user: matts
+  stat:
+    path: ~/.oh-my-zsh 
+  register: omzsh
+  tags: *tags_for_zsh
+
+- name: Setup oh-my-zsh
+  become_user: matts
+  tags: *tags_for_zsh
+  when: omzsh.stat.exists == False
+  shell: curl -L https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh > ~/.omzsh-installer && chmod 755 ~/.omzsh-installer && ~/.omzsh-installer
