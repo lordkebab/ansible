@@ -1,0 +1,17 @@
+- name: Download go 1.18
+  become: no
+  shell: wget -P /tmp https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
+  tags:
+    - install
+
+- name: Install go 1.18
+  become: yes
+  shell:  tar -C /usr/local -xzf /tmp/go1.18*.tar.gz
+  tags:
+    - install
+
+- name: Install go language server
+  become: no
+  shell: go install golang.org/x/tools/gopls@latest
+  tags:
+    - install
