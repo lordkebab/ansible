@@ -1,11 +1,21 @@
+- name: Check for nord theme
+  become_user: matts
+  stat:
+    path: ~/.nord-theme
+  register: nord
+  tags: 
+    - install
+
 - name: Install nord theme
-  become: no
-  shell: git clone https://github.com/arcticicestudio/nord-gnome-terminal.git /tmp/nord
+  become_user: matts
+  shell: git clone https://github.com/arcticicestudio/nord-gnome-terminal.git ~/.nord-theme
+  when: nord.stat.exists == False
   tags:
     - install
 
 - name: Setup nord theme
-  become: no
-  shell:  /tmp/nord/src/nord.sh
+  become_user: matts
+  shell: ~/.nord-theme/src/nord.sh
+  when: nord.stat.exists == False
   tags:
     - install
