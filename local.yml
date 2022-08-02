@@ -11,3 +11,6 @@
     - include: tasks/core-libs.yml
     - include: tasks/tools.yml
     - include: tasks/git.yml
+    - include: tasks/nord-theme.yml
+    - include: tasks/go.yml
+    - include: tasks/zsh-setup.yml
