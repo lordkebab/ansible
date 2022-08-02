@@ -1,0 +1,50 @@
+- name: Check for dotfiles
+  become_user: matts
+  stat:
+    path:  ~/.dotfiles
+  register: dotfiles
+  tags:
+    - dotfiles
+
+- name: Clone dotfiles repo
+  become_user: matts
+  ansible.builtin.git:
+    repo: https://github.com/matts80/dotfiles
+    dest: ~/.dotfiles
+  when: dotfiles.stat.exists == False
+  tags:
+    - dotfiles
+
+- name: Remove default .zshrc from oh-my-zsh setup to make room for mine
+  become_user: matts
+  shell: rm -f ~/.zshrc
+  when: dotfiles.stat.exists == False
+  tags:
+    - dotfiles
+
+- name: List out the dotfiles
+  become_user: matts
+  shell: cd ~/.dotfiles ; find . -maxdepth 1 -mindepth 1 -type d ! -name '*.git' | cut -c 3-
+  register: files_matched
+  tags:
+    - dotfiles
+
+# debug
+# - name: Debug files matched
+#  debug:
+#    var: item
+#  with_items:
+#    - "{{ files_matched.stdout_lines }}"
+#  tags:
+#    - dotfiles
+#    - debug
+
+- name: Stow each dotfile
+  become_user: matts
+  command: 
+    chdir: ~/.dotfiles
+    cmd: "stow {{ item }}"
+  with_items:
+    - "{{ files_matched.stdout_lines }}"
+  tags:
+    - dotfiles
