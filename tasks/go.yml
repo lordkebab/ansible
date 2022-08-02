@@ -1,17 +1,36 @@
+- name: Check for go 1.18
+  become_user: matts
+  stat:
+    path: /usr/local/go
+  register: goinstalled
+  tags:
+    - install
+
+- name: Check for gopls 
+  become_user: matts
+  stat:
+    path: ~/go/bin/gopls
+  register: goplsinstalled
+  tags:
+    - install
+
 - name: Download go 1.18
-  become: no
+  become_user: matts
   shell: wget -P /tmp https://go.dev/dl/go1.18.3.linux-amd64.tar.gz
+  when: goinstalled.stat.exists == False
   tags:
     - install
 
 - name: Install go 1.18
   become: yes
   shell:  tar -C /usr/local -xzf /tmp/go1.18*.tar.gz
+  when: goinstalled.stat.exists == False
   tags:
     - install
 
 - name: Install go language server
-  become: no
+  become_user: matts
   shell: go install golang.org/x/tools/gopls@latest
+  when: goplsinstalled.stat.exists == False
   tags:
     - install
