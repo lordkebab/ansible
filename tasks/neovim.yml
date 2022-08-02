@@ -1,0 +1,36 @@
+- name: Check for neovim
+  become_user: matts
+  stat:
+    path: /usr/local/nvim-linux64
+  register: neovim
+  tags: 
+    - install
+
+- name: Download neovim
+  become_user: matts
+  shell: wget -P /tmp https://github.com/neovim/neovim/releases/download/v0.7.2/nvim-linux64.tar.gz
+  when: neovim.stat.exists == False
+  tags:
+    - install
+
+- name: Install 
+  become: yes
+  shell: tar -C /usr/local -xzf /tmp/nvim*.gz
+  when: neovim.stat.exists == False
+  tags:
+    - install
+
+- name: Check for vim-plug
+  become_user: matts
+  stat:
+    path: ~/.local/share/nvim/site/autoload/plug.vim
+  register: vimplug
+  tags:
+    - install
+
+- name: Install vim-plug
+  become_user: matts
+  shell: curl -flo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  when: vimplug.stat.exists == False
+  tags:
+    - install
