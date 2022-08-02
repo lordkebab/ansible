@@ -14,3 +14,4 @@
     - include: tasks/nord-theme.yml
     - include: tasks/go.yml
     - include: tasks/zsh-setup.yml
+    - include: tasks/neovim.yml
