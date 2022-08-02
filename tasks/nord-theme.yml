@@ -1,0 +1,11 @@
+- name: Install nord theme
+  become: no
+  shell: git clone https://github.com/arcticicestudio/nord-gnome-terminal.git /tmp/nord
+  tags:
+    - install
+
+- name: Setup nord theme
+  become: no
+  shell:  /tmp/nord/src/nord.sh
+  tags:
+    - install
