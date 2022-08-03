@@ -8,7 +8,7 @@
   git:
     accept_hostkey: yes
     repo: "{{ gitbase }}/{{ item }}.git"
-    dest: ~/workspace/"{{ item }}"
+    dest: ~/workspace/{{ item }}
   with_items:
     - "{{ repos_to_clone }}"
   tags:
