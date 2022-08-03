@@ -16,3 +16,4 @@
     - include: tasks/zsh-setup.yml
     - include: tasks/neovim.yml
     - include: tasks/dotfiles.yml
+    - include: tasks/ssh-keys.yml

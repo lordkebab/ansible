@@ -1,0 +1,43 @@
+- name: Check for ~/.ssh directory
+  become_user: matts
+  stat:
+    path: ~/.ssh
+  register: sshdir
+  tags:
+    - config
+    - ssh
+  
+- name: Ensure ~/.ssh directory exists
+  become_user: matts
+  ansible.builtin.file:
+    path: ~/.ssh
+    state: directory
+  when: sshdir.stat.exists == False
+  tags:
+    - config
+    - ssh
+
+- name: Copy SSH public key to host
+  become_user: matts
+  ansible.builtin.copy:
+    src: vault/id_rsa.pub
+    dest: ~/.ssh
+    decrypt: no
+  when: sshdir.stat.exists == False
+  tags:
+    - config
+    - ssh
+
+- name: Copy SSH private key to host
+  become_user: matts
+  ansible.builtin.copy:
+    src: vault/id_rsa
+    dest: ~/.ssh
+    mode: '0600'
+    decrypt: yes
+  when: sshdir.stat.exists == False
+  tags:
+    - config
+    - ssh
+    - encrypted
+    - vault
