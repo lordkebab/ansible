@@ -18,3 +18,4 @@
     - include: tasks/dotfiles.yml
     - include: tasks/ssh-keys.yml
     - include: tasks/repos.yml
+    - include: tasks/python.yml

@@ -1,0 +1,23 @@
+- name: Install python modules
+  become_user: matts
+  ansible.builtin.pip:
+    name: virtualenv
+    extra_args: --user
+  tags:
+    - python
+
+- name: Setup a directory for notebooks
+  become_user: matts
+  ansible.builtin.file:
+    path: ~/workspace/nb
+    state: directory
+  tags:
+    - python
+
+- name: Create a virtualenv for notebooks and install packages in it
+  become_user: matts
+  ansible.builtin.pip:
+    virtualenv: ~/workspace/nb/.venv
+    name: [ "requests", "numpy", "pandas", "matplotlib", "scikit-learn", "seaborn", "keras", "tensorflow", "jupyterlab" ]
+  tags:
+    - python
