@@ -1,0 +1,15 @@
+- name: Clone repos
+  vars:
+    gitbase: git@github.com:matts80
+    repos_to_clone:
+      - hermes
+      - scratch
+  become_user: matts
+  git:
+    accept_hostkey: yes
+    repo: "{{ gitbase }}/{{ item }}.git"
+    dest: ~/workspace/"{{ item }}"
+  with_items:
+    - "{{ repos_to_clone }}"
+  tags:
+    - repos
