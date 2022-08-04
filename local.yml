@@ -20,3 +20,4 @@
     - include: tasks/repos.yml
     - include: tasks/python.yml
     - include: tasks/brave.yml
+    - include: tasks/discord.yml

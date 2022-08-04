@@ -1,0 +1,7 @@
+- name: Check if discord is installed
+  become: yes
+  apt:
+    deb: https://discord.com/api/download?platform=linux&format=deb
+  tags:
+    - setup
+    - discord
