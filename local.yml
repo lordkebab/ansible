@@ -19,3 +19,4 @@
     - include: tasks/ssh-keys.yml
     - include: tasks/repos.yml
     - include: tasks/python.yml
+    - include: tasks/brave.yml
