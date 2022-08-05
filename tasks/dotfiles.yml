@@ -9,6 +9,7 @@
 - name: Clone dotfiles repo
   become_user: matts
   ansible.builtin.git:
+    accept_hostkey: yes
     repo: git@github.com:matts80/dotfiles.git
     dest: ~/.dotfiles
   when: dotfiles.stat.exists == False
