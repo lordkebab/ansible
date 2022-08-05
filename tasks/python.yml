@@ -17,6 +17,7 @@
 - name: Create a virtualenv for notebooks and install packages in it
   become_user: matts
   ansible.builtin.pip:
+    virtualenv_command: ~/.local/bin/virtualenv
     virtualenv: ~/workspace/nb/.venv
     name: [ "requests", "numpy", "pandas", "matplotlib", "scikit-learn", "seaborn", "keras", "tensorflow", "jupyterlab" ]
   tags:
