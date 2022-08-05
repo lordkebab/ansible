@@ -1,0 +1,7 @@
+- name: post playbook run cleanup (remove 0.6x neovim)
+  become: yes
+  ansible.builtin.apt:
+    name: neovim
+    state: absent
+  tags:
+    - cleanup

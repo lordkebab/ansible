@@ -21,3 +21,4 @@
     - include: tasks/python.yml
     - include: tasks/brave.yml
     - include: tasks/discord.yml
+    - include: tasks/post-cleanup.yml
