@@ -26,7 +26,7 @@
 
 - name: Add brave stable channel to apt repos
   become: yes
-  shell: echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" > tee /etc/apt/sources.list.d/brave-browser-release.list
+  shell: echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" > /etc/apt/sources.list.d/brave-browser-release.list
   when: "'brave-browser' not in ansible_facts.packages"
   tags:
     - setup
