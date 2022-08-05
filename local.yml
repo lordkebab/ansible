@@ -15,8 +15,8 @@
     - include: tasks/go.yml
     - include: tasks/zsh-setup.yml
     - include: tasks/neovim.yml
-    - include: tasks/dotfiles.yml
     - include: tasks/ssh-keys.yml
+    - include: tasks/dotfiles.yml
     - include: tasks/repos.yml
     - include: tasks/python.yml
     - include: tasks/brave.yml
