@@ -1,7 +1,7 @@
 - name: Install tools
   become: yes
   apt:
-    name: [ "curl", "stow", "git", "tmux", "ripgrep", "mpv" ]
+    name: [ "curl", "stow", "git", "tmux", "ripgrep", "mpv", "compton" ]
   tags:
     - install
     - tools
