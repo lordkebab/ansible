@@ -5,6 +5,7 @@
   register: goinstalled
   tags:
     - install
+    - go
 
 - name: Check for gopls 
   become_user: matts
@@ -13,6 +14,7 @@
   register: goplsinstalled
   tags:
     - install
+    - go
 
 - name: Download go 1.18
   become_user: matts
@@ -20,6 +22,7 @@
   when: goinstalled.stat.exists == False
   tags:
     - install
+    - go
 
 - name: Install go 1.18
   become: yes
@@ -27,10 +30,12 @@
   when: goinstalled.stat.exists == False
   tags:
     - install
+    - go
 
 - name: Install go language server
   become_user: matts
-  shell: go install golang.org/x/tools/gopls@latest
+  shell: /usr/local/go/bin/go install golang.org/x/tools/gopls@latest
   when: goplsinstalled.stat.exists == False
   tags:
     - install
+    - go
