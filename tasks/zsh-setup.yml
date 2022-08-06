@@ -5,7 +5,7 @@
 
 - name: Change default shell to zsh
   become: yes
-  shell: chsh -s $(which zsh)
+  shell: chsh -s /usr/bin/zsh
   tags: *tags_for_zsh
 
 - name: Only setup oh-my-zsh if it isn't setup already
