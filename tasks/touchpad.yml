@@ -1,0 +1,11 @@
+- name: setup touchpad
+  become: yes
+  ansible.builtin.copy:
+    src: /home/matts/.dotfiles/90-touchpad.conf
+    dest: /etc/X11/xorg.conf.d/90-touchpad.conf
+    owner: root
+    group: root
+    mode: '0644'
+  tags:
+    - setup
+    - touchpad

@@ -17,6 +17,7 @@
     - include: tasks/neovim.yml
     - include: tasks/ssh-keys.yml
     - include: tasks/dotfiles.yml
+    - include: tasks/touchpad.yml
     - include: tasks/repos.yml
     - include: tasks/python.yml
     - include: tasks/brave.yml
